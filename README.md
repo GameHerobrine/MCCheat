@@ -1,3 +1,3 @@
 # MCCheat
 
-decompiled MCCheat
+decompiled and *slightly* modified MCCheat
