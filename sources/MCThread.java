@@ -1,26 +1,26 @@
 import net.skidcode.gh.Direction;
-import net.skidcode.gh.Status;
+import net.skidcode.gh.TimeStatus;
 
 public class MCThread implements Runnable {
     private boolean running;
-    private gj mainhook; /*BASECLASS A126*/
+    private gj mainhook; /*BASECLASS*/
     private boolean invuln;
     private boolean oxygen;
-    private boolean KKLI;
+    private boolean nofiredamage;
     private boolean fly;
     private boolean hover;
-    private Status timeofday;
-    private Direction movement;
+    private TimeStatus timeofday;
+    private Direction movementDirection;
     
     public MCThread(final gj paramgj) {
         this.running = false;
         this.invuln = false;
         this.oxygen = false;
-        this.KKLI = false;
+        this.nofiredamage = false;
         this.fly = false;
         this.hover = false;
-        this.timeofday = Status.C;
-        this.movement = Direction.NONE;
+        this.timeofday = TimeStatus.NORMAL;
+        this.movementDirection = Direction.NONE;
         this.mainhook = paramgj;
     }
     
@@ -47,10 +47,10 @@ public class MCThread implements Runnable {
                 if (this.oxygen) {
                     this.mainhook.g.bk = 300;
                 }
-                if (this.KKLI) {
+                if (this.nofiredamage) {
                     this.mainhook.g.bg = 0;
                 }
-                if (!this.movement.equals(Direction.NONE)) {
+                if (!this.movementDirection.equals(Direction.NONE)) {
                     final bq g = this.mainhook.g;
                     g.az *= 1.1;
                     final bq g2 = this.mainhook.g;
@@ -68,16 +68,16 @@ public class MCThread implements Runnable {
                         this.mainhook.g.aB = 0.7;
                     }
                 }
-                if (this.timeofday.equals(Status.I)) {
+                if (this.timeofday.equals(TimeStatus.DAY)) {
                     if (tod % 24000L >= 12000L) {
                         this.mainhook.e.e = (tod / 24000L + 1L) * 24000L;
                     }
                 }
-                else if (this.timeofday.equals(Status.Z) && tod % 24000L < 12000L) {
+                else if (this.timeofday.equals(TimeStatus.NIGHT) && tod % 24000L < 12000L) {
                     this.mainhook.e.e = (tod / 24000L + 1L) * 24000L + 16000L;
                 }
             }
-            D(10);
+            sleep(10);
         }
     }
     
@@ -86,14 +86,14 @@ public class MCThread implements Runnable {
         new Thread((Runnable)this).start();
     }
     
-    private static void D(final int paramInt) {
+    private static void sleep(final int paramInt) {
         try {
             Thread.sleep((long)paramInt);
         }
         catch (InterruptedException ex) {}
     }
     
-    public final void I(final boolean paramBoolean) {
+    public final void toggleGodMode(final boolean paramBoolean) {
         if (paramBoolean) {
             this.invuln = true;
         }
@@ -102,7 +102,7 @@ public class MCThread implements Runnable {
         }
     }
     
-    public final void Z(final boolean paramBoolean) {
+    public final void toggleBreathUnderwater(final boolean paramBoolean) {
         if (paramBoolean) {
             this.oxygen = true;
         }
@@ -111,16 +111,17 @@ public class MCThread implements Runnable {
         }
     }
     
-    public final void C(final boolean paramBoolean) {
+    public final void toggleNoFireDamage(final boolean paramBoolean) {
         if (paramBoolean) {
-            this.KKLI = true;
+            this.nofiredamage = true;
+            System.out.println("true!!");
         }
         else {
-            this.KKLI = false;
+            this.nofiredamage = false;
         }
     }
     
-    public final void B(final boolean paramBoolean) {
+    public final void toggleFly(final boolean paramBoolean) {
         if (paramBoolean) {
             this.fly = true;
         }
@@ -129,7 +130,7 @@ public class MCThread implements Runnable {
         }
     }
     
-    public final void D(final boolean paramBoolean) {
+    public final void toggleHoverMode(final boolean paramBoolean) {
         if (paramBoolean) {
             this.hover = true;
         }
@@ -138,18 +139,15 @@ public class MCThread implements Runnable {
         }
     }
     
-    public final void I(final Direction paramDirection) {
-        this.movement = paramDirection;
+    public final void setCurrentMovementDirection(final Direction paramDirection) {
+        this.movementDirection = paramDirection;
     }
     
-    public final void I(final Status paramStatus) {
+    public final void setTime(final TimeStatus paramStatus) {
         this.timeofday = paramStatus;
     }
     
     private boolean check() {
         return this.mainhook.e != null && this.mainhook.g != null && this.mainhook.g.e != null;
-    }
-    
-    public void a(final String paramString) {
     }
 }

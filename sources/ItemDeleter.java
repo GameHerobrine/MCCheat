@@ -1,14 +1,14 @@
 
 public class ItemDeleter {
-    private gj KKLI;
+    private gj gjInstance; /*BASECLASS*/
     
     public ItemDeleter(final gj paramgi) {
-        this.KKLI = paramgi;
+        this.gjInstance = paramgi;
     }
     
-    public final void I() {
+    public final void clearInventory() { 
         for (int i = 0; i < 36; ++i) {
-            this.KKLI.g.e.a[i] = null;
+            this.gjInstance.g.e.a[i] = null;
         }
     }
 }

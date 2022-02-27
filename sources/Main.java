@@ -6,11 +6,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.concurrent.ConcurrentHashMap;
 import java.net.URL;
 import java.net.URLClassLoader;
 import javax.swing.JOptionPane;
-
 import java.awt.Component;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -19,26 +17,24 @@ import java.util.ArrayList;
 
 public class Main {
     public static GuiOptions optionsInstance;
-    public static GUI2 Z;
+    public static GuiHiddenOptions smallGui;
     public static String line;
     public static ArrayList<String> testers;
     private static String[] KKLI;
     
     public static final void main(final String[] var0) throws NoSuchMethodException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, MalformedURLException, ClassNotFoundException {
         SEVERE();
-        final GuiOptions i = Main.optionsInstance;
         GuiOptions.Z();
         KKLI();
         final gj var = MCUtils.AddWindow();
         Main.optionsInstance = new GuiOptions(var);
-        Main.Z = new GUI2();
+        Main.smallGui = new GuiHiddenOptions();
         Main.optionsInstance.setVisible(true);
-        Main.Z.setVisible(false);
+        Main.smallGui.setVisible(false);
         new HBThread(Main.optionsInstance);
     }
     
     private static void KKLI() throws NoSuchMethodException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, MalformedURLException, ClassNotFoundException {
-        final GuiOptions i = Main.optionsInstance;
         final File var0 = new File(GuiOptions.I(), "bin");
         if (!var0.exists()) {
             JOptionPane.showMessageDialog((Component)null, "Please run Minecraft at least one time before using MCCheat.", "MCCheat", 2);
@@ -52,17 +48,17 @@ public class Main {
         var4.setAccessible(true);
         final Field var5 = ClassLoader.class.getDeclaredField("package2certs");
         var5.setAccessible(true);
-        final ConcurrentHashMap var6 = (ConcurrentHashMap)var5.get(var3);
+        //final ConcurrentHashMap var6 = (ConcurrentHashMap)var5.get(var3);
         for (final File var10 : var0.listFiles()) {
-            var4.invoke(var3, new Object[] { var10.toURL() });
+            var4.invoke(var3, new Object[] { var10.toURI().toURL() });
         }
-        var6.remove("");
+        //var6.remove("");
         Class.forName("gj");
-        var6.remove("");
+        //var6.remove("");
         for (int var11 = 0; var11 < Main.KKLI.length; ++var11) {
             Class.forName(net.skidcode.gh.Type.class.getName());
         }
-        var6.remove("");
+        //var6.remove("");
     }
     
     private static void SEVERE() {
@@ -92,7 +88,7 @@ public class Main {
     }
     
     static {
-        Main.testers = (ArrayList<String>)new ArrayList();
+        Main.testers = new ArrayList<String>();
         Main.KKLI = new String[] { "Direction", "GUI", "GUI$1", "GUI$2", "GUI$3", "GUI$4", "GUI$5", "GUI$6", "GUI$7", "GUI$8", "GUI$9", "GUI$10", "GUI$11", "GUI$12", "GUI$13", "GUI$14", "GUI$15", "GUI$16", "GUI$17", "GUI$18", "GUI$19", "GUI$20", "GUI$21", "GUI$22", "GUI2", "GUI2$1", "HBThread", "Item", "ItemDeleter", "ItemSet", "ItemSpawner", "Main", "MCThread", "MCUtils", "Status", "Teleport", "Type", "GUI3", "GUI3$1" };
     }
 }

@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import java.util.ArrayList;
 
-public class GUI3 {
+public class AuthGui {
     public static String line;
     public static ArrayList<String> testers;
     public static JPasswordField password;
@@ -25,23 +25,23 @@ public class GUI3 {
     public static JButton done;
     public static JFrame fram;
     
-    public GUI3() {
-        (GUI3.fram = new JFrame("Authorization")).setSize(240, 105);
-        GUI3.fram.setResizable(false);
-        GUI3.fram.setLayout((LayoutManager)null);
-        GUI3.fram.setVisible(true);
-        GUI3.password.setBounds(70, 15, 150, 20);
-        GUI3.pas.setBounds(5, 15, 100, 20);
-        GUI3.done.setBounds(70, 45, 100, 20);
-        GUI3.fram.add((Component)GUI3.done);
-        GUI3.fram.add((Component)GUI3.pas);
-        GUI3.fram.add((Component)GUI3.password);
-        GUI3.password.setEchoChar('*');
-        GUI3.fram.setLocationRelativeTo((Component)null);
-        GUI3.fram.setDefaultCloseOperation(3);
-        GUI3.done.addActionListener((ActionListener)new ActionListener() {
+    public AuthGui() {
+        (AuthGui.fram = new JFrame("Authorization")).setSize(240, 105);
+        AuthGui.fram.setResizable(false);
+        AuthGui.fram.setLayout((LayoutManager)null);
+        AuthGui.fram.setVisible(true);
+        AuthGui.password.setBounds(70, 15, 150, 20);
+        AuthGui.pas.setBounds(5, 15, 100, 20);
+        AuthGui.done.setBounds(70, 45, 100, 20);
+        AuthGui.fram.add((Component)AuthGui.done);
+        AuthGui.fram.add((Component)AuthGui.pas);
+        AuthGui.fram.add((Component)AuthGui.password);
+        AuthGui.password.setEchoChar('*');
+        AuthGui.fram.setLocationRelativeTo((Component)null);
+        AuthGui.fram.setDefaultCloseOperation(3);
+        AuthGui.done.addActionListener((ActionListener)new ActionListener() {
             public void actionPerformed(final ActionEvent ev) {
-                GUI3.getPassword();
+                AuthGui.getPassword();
             }
         });
     }
@@ -59,17 +59,17 @@ public class GUI3 {
         }
         final BufferedReader r = new BufferedReader((Reader)new InputStreamReader(in));
         try {
-            while ((GUI3.line = r.readLine()) != null) {
-                GUI3.testers.add(GUI3.line);
+            while ((AuthGui.line = r.readLine()) != null) {
+                AuthGui.testers.add(AuthGui.line);
             }
         }
         catch (IOException e3) {
             e3.printStackTrace();
         }
-        if (GUI3.password.getText().equals(GUI3.testers.get(0))) {
+        if (AuthGui.password.getPassword().equals(AuthGui.testers.get(0))) {
             MCUtils.frame.setVisible(true);
             Main.optionsInstance.setVisible(true);
-            GUI3.fram.setVisible(false);
+            AuthGui.fram.setVisible(false);
         }
         else {
             JOptionPane.showMessageDialog((Component)null, "Incorrect password", "MCCheat", 2);
@@ -78,9 +78,9 @@ public class GUI3 {
     }
     
     static {
-        GUI3.testers = (ArrayList<String>)new ArrayList();
-        GUI3.password = new JPasswordField();
-        GUI3.pas = new JLabel("Password:");
-        GUI3.done = new JButton("Login");
+        AuthGui.testers = new ArrayList<String>();
+        AuthGui.password = new JPasswordField();
+        AuthGui.pas = new JLabel("Password:");
+        AuthGui.done = new JButton("Login");
     }
 }

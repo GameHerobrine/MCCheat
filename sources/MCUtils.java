@@ -9,12 +9,10 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Frame;
 import javax.swing.JFrame;
-import java.util.ArrayList;
 
 public class MCUtils {
     public static String line;
-    public static ArrayList<String> testers;
-    public static GUI3 gui;
+    public static AuthGui gui;
     public static JFrame frame;
     
     public static final gj addWindowListener() {
@@ -57,16 +55,9 @@ public class MCUtils {
         else {
             minecraftimpl.i = new ea(new StringBuilder().append("PlayerName").append(System.currentTimeMillis() % 1000L).toString(), "");
         }
-        if ("" != null) {
-            final String[] as = "".split(":");
-        }
         MCUtils.frame.setVisible(true);
         MCUtils.frame.addWindowListener((WindowListener)new gn((Minecraft)minecraftimpl, thread));
         thread.start();
         return minecraftimpl;
-    }
-    
-    static {
-        MCUtils.testers = (ArrayList<String>)new ArrayList();
     }
 }

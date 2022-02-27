@@ -9,24 +9,24 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HBThread implements Runnable {
-    private boolean KKLI;
-    private GuiOptions SEVERE;
+    private boolean isRunning; //might be wrong
+    private GuiOptions optionsGuiInstance;
     private long connect;
     private long currentTimeMillis;
     
     public HBThread(final GuiOptions paramGUI) {
-        this.KKLI = false;
-        this.SEVERE = paramGUI;
+        this.isRunning = false;
+        this.optionsGuiInstance = paramGUI;
         this.disconnect();
     }
     
     public final void run() {
-        while (this.KKLI) {
+        while (this.isRunning) {
             if (this.SEVERE()) {
                 this.KKLI();
             }
             if (this.connect()) {
-                this.currentTimeMillis();
+                this.getCurrentUsersAmount();
             }
             getInputStream(10000);
         }
@@ -55,21 +55,22 @@ public class HBThread implements Runnable {
         return System.currentTimeMillis() - this.currentTimeMillis >= 60000L;
     }
     
-    private void currentTimeMillis() {
-        try {
+    private void getCurrentUsersAmount() {
+        /*try {
             final URL localURL = new URL("http://www.mccheat.net/mccheat/users.php");
             final BufferedReader localBufferedReader = new BufferedReader((Reader)new InputStreamReader(localURL.openStream()));
             final String str = localBufferedReader.readLine().trim();
-            this.SEVERE.f1I.setText(str);
+            this.optionsGuiInstance.playerAmount.setText(str);
             this.currentTimeMillis = System.currentTimeMillis();
         }
         catch (IOException localIOException) {
             Logger.getLogger(HBThread.class.getName()).log(Level.SEVERE, (String)null, (Throwable)localIOException);
-        }
+        }*/
+    	
     }
     
     private void disconnect() {
-        this.KKLI = true;
+        this.isRunning = true;
         new Thread((Runnable)this).start();
     }
     
