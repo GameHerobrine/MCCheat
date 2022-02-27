@@ -65,7 +65,7 @@ public class GuiOptions extends JFrame {
     private JRadioButton addKeyListener;
     private JButton addMouseListener;
     private JRadioButton addPreferredGap;
-    private JCheckBox addTab;
+    private JCheckBox fireImmunity;
     private JCheckBox append;
     private JButton hideButton;
     private JCheckBox at;
@@ -78,11 +78,11 @@ public class GuiOptions extends JFrame {
     private JLabel clear;
     private JLabel compile;
     private JLabel createParallelGroup;
-    private JLabel createSequentialGroup;
+    private JLabel clientNameLabel;
     private JLabel authorLabel;
     private JLabel updateWebsite;
     private JLabel exit;
-    private JLabel find;
+    private JLabel usersCounterLabel;
     private JLabel textTeleportName;
     private JLabel get;
     private JPanel getAccessibleContext;
@@ -336,13 +336,13 @@ public class GuiOptions extends JFrame {
         this.addGroup = new ButtonGroup();
         this.authorLabel = new JLabel();
         this.updateWebsite = new JLabel();
-        this.createSequentialGroup = new JLabel();
+        this.clientNameLabel = new JLabel();
         this.hideButton = new JButton();
-        this.find = new JLabel();
+        this.usersCounterLabel = new JLabel();
         this.playerAmount = new JLabel();
         this.isSelected = new JTabbedPane();
         this.parseInt = new JPanel();
-        this.addTab = new JCheckBox();
+        this.fireImmunity = new JCheckBox();
         this.au = new JCheckBox();
         this.printStackTrace = new JCheckBox();
         this.append = new JCheckBox();
@@ -386,19 +386,19 @@ public class GuiOptions extends JFrame {
         setResizable(false);
         this.authorLabel.setText("Original author was youtube.com/MinecraftCheat");
         this.updateWebsite.setText("Old site about updates www.mccheat.net");
-        this.createSequentialGroup.setFont(new Font("Tahoma", 1, 11));
-        this.createSequentialGroup.setText("MCCheat Forever              ");
+        this.clientNameLabel.setFont(new Font("Tahoma", 1, 11));
+        this.clientNameLabel.setText("MCCheat Forever");
         this.hideButton.setText("Hide");
         this.hideButton.addActionListener(new ActionListener() {
 
             public final void actionPerformed(ActionEvent var1) {
-                GuiOptions.I(GuiOptions.instance, var1);
+                GuiOptions.hideCurrentScreen(GuiOptions.instance, var1);
             }
         });
-        this.find.setText("People Using MCCheat:");
+        this.usersCounterLabel.setText("People Using MCCheat:");
         this.playerAmount.setText("0");
-        this.addTab.setText("Fire Proof");
-        this.addTab.addActionListener(new ActionListener() {
+        this.fireImmunity.setText("Fire Proof");
+        this.fireImmunity.addActionListener(new ActionListener() {
             public final void actionPerformed(ActionEvent var1) {
                 GuiOptions.Z(GuiOptions.instance, var1);
             }
@@ -460,7 +460,7 @@ public class GuiOptions extends JFrame {
         this.next.addActionListener(new ActionListener() {
 
             public final void actionPerformed(ActionEvent var1) {
-                GuiOptions.E(GuiOptions.instance, var1);
+                GuiOptions.setDirectionNorth(GuiOptions.instance, var1);
             }
         });
         this.addGroup.add(this.setEnabled);
@@ -468,7 +468,7 @@ public class GuiOptions extends JFrame {
         this.setEnabled.addActionListener(new ActionListener() {
 
             public final void actionPerformed(ActionEvent var1) {
-                GuiOptions.G(GuiOptions.instance, var1);
+                GuiOptions.setDirectionSouth(GuiOptions.instance, var1);
             }
         });
         this.addGroup.add(this.addPreferredGap);
@@ -476,7 +476,7 @@ public class GuiOptions extends JFrame {
         this.addPreferredGap.addActionListener(new ActionListener() {
 
             public final void actionPerformed(ActionEvent var1) {
-                GuiOptions.H(GuiOptions.instance, var1);
+                GuiOptions.setDirectionEast(GuiOptions.instance, var1);
             }
         });
         this.addGroup.add(this.setVerticalGroup);
@@ -484,7 +484,7 @@ public class GuiOptions extends JFrame {
         this.setVerticalGroup.addActionListener(new ActionListener() {
 
             public final void actionPerformed(ActionEvent var1) {
-                GuiOptions.K(GuiOptions.instance, var1);
+                GuiOptions.setDirectionWest(GuiOptions.instance, var1);
             }
         });
         this.addGroup.add(this.length);
@@ -493,14 +493,14 @@ public class GuiOptions extends JFrame {
         this.length.addActionListener(new ActionListener() {
 
             public final void actionPerformed(ActionEvent var1) {
-                GuiOptions.L(GuiOptions.instance, var1);
+                GuiOptions.setDirectionNone(GuiOptions.instance, var1);
             }
         });
         this.get.setText("Movement Direction");
         GroupLayout var2 = new GroupLayout(this.parseInt);
         this.parseInt.setLayout(var2);
-        var2.setHorizontalGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var2.createSequentialGroup().addContainerGap().addGroup(var2.createParallelGroup(GroupLayout.Alignment.TRAILING, false).addComponent(this.get, GroupLayout.Alignment.LEADING, -1, -1, 32767).addGroup(GroupLayout.Alignment.LEADING, var2.createSequentialGroup().addGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(this.length).addComponent(this.next)).addGap(35, 35, 35).addComponent(this.compile)).addGroup(GroupLayout.Alignment.LEADING, var2.createSequentialGroup().addGroup(var2.createParallelGroup(GroupLayout.Alignment.TRAILING, false).addComponent(this.append, GroupLayout.Alignment.LEADING).addComponent(this.addTab, GroupLayout.Alignment.LEADING).addComponent(this.printStackTrace, GroupLayout.Alignment.LEADING).addComponent(this.au, GroupLayout.Alignment.LEADING).addComponent(this.at, GroupLayout.Alignment.LEADING, -1, -1, 32767)).addGap(18, 18, 18).addGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING, false).addComponent(this.iterator, -1, -1, 32767).addComponent(this.matcher, -1, -1, 32767).addComponent(this.addKeyListener)))).addContainerGap(18, 32767)));
-        var2.setVerticalGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var2.createSequentialGroup().addContainerGap().addGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var2.createSequentialGroup().addComponent(this.au).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.printStackTrace).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.addTab).addComponent(this.append).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.at)).addGroup(var2.createSequentialGroup().addComponent(this.matcher).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.addKeyListener).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.iterator))).addGap(18, 18, 18).addComponent(this.get).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var2.createSequentialGroup().addGap(95, 95, 95).addComponent(this.compile)).addGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var2.createSequentialGroup().addGap(23, 23, 23).addComponent(this.next).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)).addGroup(GroupLayout.Alignment.TRAILING, var2.createSequentialGroup().addComponent(this.length).addGap(92, 92, 92)))).addGap(167, 167, 167)));
+        var2.setHorizontalGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var2.createSequentialGroup().addContainerGap().addGroup(var2.createParallelGroup(GroupLayout.Alignment.TRAILING, false).addComponent(this.get, GroupLayout.Alignment.LEADING, -1, -1, 32767).addGroup(GroupLayout.Alignment.LEADING, var2.createSequentialGroup().addGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(this.length).addComponent(this.next)).addGap(35, 35, 35).addComponent(this.compile)).addGroup(GroupLayout.Alignment.LEADING, var2.createSequentialGroup().addGroup(var2.createParallelGroup(GroupLayout.Alignment.TRAILING, false).addComponent(this.append, GroupLayout.Alignment.LEADING).addComponent(this.fireImmunity, GroupLayout.Alignment.LEADING).addComponent(this.printStackTrace, GroupLayout.Alignment.LEADING).addComponent(this.au, GroupLayout.Alignment.LEADING).addComponent(this.at, GroupLayout.Alignment.LEADING, -1, -1, 32767)).addGap(18, 18, 18).addGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING, false).addComponent(this.iterator, -1, -1, 32767).addComponent(this.matcher, -1, -1, 32767).addComponent(this.addKeyListener)))).addContainerGap(18, 32767)));
+        var2.setVerticalGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var2.createSequentialGroup().addContainerGap().addGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var2.createSequentialGroup().addComponent(this.au).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.printStackTrace).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.fireImmunity).addComponent(this.append).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.at)).addGroup(var2.createSequentialGroup().addComponent(this.matcher).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.addKeyListener).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.iterator))).addGap(18, 18, 18).addComponent(this.get).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var2.createSequentialGroup().addGap(95, 95, 95).addComponent(this.compile)).addGroup(var2.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var2.createSequentialGroup().addGap(23, 23, 23).addComponent(this.next).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)).addGroup(GroupLayout.Alignment.TRAILING, var2.createSequentialGroup().addComponent(this.length).addGap(92, 92, 92)))).addGap(167, 167, 167)));
         this.isSelected.addTab("Options", this.parseInt);
         this.av.setText("Spawn Invincible Items");
         this.aw.setEnabled(true);
@@ -581,37 +581,23 @@ public class GuiOptions extends JFrame {
         this.isSelected.addTab("Teleporting", this.getAccessibleContext);
         GroupLayout var5 = new GroupLayout(getContentPane());
         getContentPane().setLayout(var5);
-        var5.setHorizontalGroup(var5.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var5.createSequentialGroup().addGroup(var5.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var5.createSequentialGroup().addGap(62, 62, 62).addComponent(this.updateWebsite)).addGroup(var5.createSequentialGroup().addGap(25, 25, 25).addComponent(this.authorLabel)).addGroup(var5.createSequentialGroup().addContainerGap().addComponent(this.hideButton, -1, 193, 32767)).addGroup(var5.createSequentialGroup().addGap(45, 45, 45).addComponent(this.find).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.playerAmount, -2, 26, -2))).addContainerGap()).addGroup(GroupLayout.Alignment.TRAILING, var5.createSequentialGroup().addContainerGap(49, 32767).addComponent(this.createSequentialGroup).addGap(49, 49, 49)).addGroup(var5.createSequentialGroup().addContainerGap().addComponent(this.isSelected, -1, 193, 32767).addContainerGap()));
-        var5.setVerticalGroup(var5.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var5.createSequentialGroup().addContainerGap().addComponent(this.createSequentialGroup, -2, 14, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.hideButton).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(var5.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.playerAmount).addComponent(this.find)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.isSelected, -2, 339, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, -1, 32767).addComponent(this.authorLabel).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.updateWebsite).addContainerGap()));
+        var5.setHorizontalGroup(var5.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var5.createSequentialGroup().addGroup(var5.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var5.createSequentialGroup().addGap(62, 62, 62).addComponent(this.updateWebsite)).addGroup(var5.createSequentialGroup().addGap(25, 25, 25).addComponent(this.authorLabel)).addGroup(var5.createSequentialGroup().addContainerGap().addComponent(this.hideButton, -1, 193, 32767)).addGroup(var5.createSequentialGroup().addGap(45, 45, 45).addComponent(this.usersCounterLabel).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.playerAmount, -2, 26, -2))).addContainerGap()).addGroup(GroupLayout.Alignment.TRAILING, var5.createSequentialGroup().addContainerGap(49, 32767).addComponent(this.clientNameLabel).addGap(49, 49, 49)).addGroup(var5.createSequentialGroup().addContainerGap().addComponent(this.isSelected, -1, 193, 32767).addContainerGap()));
+        var5.setVerticalGroup(var5.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(var5.createSequentialGroup().addContainerGap().addComponent(this.clientNameLabel, -2, 14, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.hideButton).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(var5.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.playerAmount).addComponent(this.usersCounterLabel)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.isSelected, -2, 339, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, -1, 32767).addComponent(this.authorLabel).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.updateWebsite).addContainerGap()));
         this.isSelected.getAccessibleContext().setAccessibleName("Options");
         pack();
         System.out.println(addElement);
     }
 
-    private void KKLI(ActionEvent var1) {
+    private void hideCurrentScreen(ActionEvent var1) {
         Main.optionsInstance.setVisible(false);
         Main.smallGui.setVisible(true);
     }
-
-    private void LEADING(ActionEvent var1) {
-        this.minecraftThread.setCurrentMovementDirection(Direction.NONE);
+    
+    private void setMovementDirection(ActionEvent var1, Direction d) {
+    	this.minecraftThread.setCurrentMovementDirection(d);
     }
+    
 
-    private void RELATED(ActionEvent var1) {
-        this.minecraftThread.setCurrentMovementDirection(Direction.WEST);
-    }
-
-    private void TRAILING(ActionEvent var1) {
-        this.minecraftThread.setCurrentMovementDirection(Direction.EAST);
-    }
-
-    private void UNRELATED(ActionEvent var1) {
-        this.minecraftThread.setCurrentMovementDirection(Direction.SOUTH);
-    }
-
-    private void aB(ActionEvent var1) {
-        this.minecraftThread.setCurrentMovementDirection(Direction.NORTH);
-    }
 
     private void add(ActionEvent var1) {
         if (this.at.isSelected()) {
@@ -658,7 +644,7 @@ public class GuiOptions extends JFrame {
     }
 
     private void addKeyListener(ActionEvent var1) {
-        if (this.addTab.isSelected()) {
+        if (this.fireImmunity.isSelected()) {
             this.minecraftThread.toggleNoFireDamage(true);
         } else {
             this.minecraftThread.toggleNoFireDamage(false);
@@ -805,8 +791,8 @@ public class GuiOptions extends JFrame {
         return var0.length() > 0 ? Character.toUpperCase(var0.charAt(0)) + var0.substring(1) : var0;
     }
 
-    static final void I(GuiOptions var0, ActionEvent var1) {
-        var0.KKLI(var1);
+    static final void hideCurrentScreen(GuiOptions var0, ActionEvent var1) {
+        var0.hideCurrentScreen(var1);
     }
 
     static final void Z(GuiOptions var0, ActionEvent var1) {
@@ -850,25 +836,25 @@ public class GuiOptions extends JFrame {
     static final void A(GuiOptions var0, ActionEvent var1) {
         var0.add(var1);
     }
-
-    static final void E(GuiOptions var0, ActionEvent var1) {
-        var0.aB(var1);
+    
+    static final void setDirectionNorth(GuiOptions var0, ActionEvent var1) {
+        var0.setMovementDirection(var1,Direction.NORTH);
     }
 
-    static final void G(GuiOptions var0, ActionEvent var1) {
-        var0.UNRELATED(var1);
+    static final void setDirectionSouth(GuiOptions var0, ActionEvent var1) {
+        var0.setMovementDirection(var1,Direction.SOUTH);
     }
 
-    static final void H(GuiOptions var0, ActionEvent var1) {
-        var0.TRAILING(var1);
+    static final void setDirectionEast(GuiOptions var0, ActionEvent var1) {
+        var0.setMovementDirection(var1,Direction.EAST);
     }
 
-    static final void K(GuiOptions var0, ActionEvent var1) {
-        var0.RELATED(var1);
+    static final void setDirectionWest(GuiOptions var0, ActionEvent var1) {
+        var0.setMovementDirection(var1,Direction.WEST);
     }
 
-    static final void L(GuiOptions var0, ActionEvent var1) {
-        var0.LEADING(var1);
+    static final void setDirectionNone(GuiOptions var0, ActionEvent var1) {
+        var0.setMovementDirection(var1,Direction.NONE);
     }
 
     static final void M(GuiOptions var0, ActionEvent var1) {
